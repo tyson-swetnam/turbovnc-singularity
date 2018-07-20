@@ -17,12 +17,10 @@ exit 0
 
 %post
 
-set -e
-
-apt-get update && \
-apt-get -y upgrade && \
-apt-get install -y --fix-missing software-properties-common libglib2.0 libqt5gui5 libgtk2.0-0 libglu1-mesa libgomp1 zlib1g && \
-apt-get install -y  --fix-missing libxcb-image0 libqt5x11extras5 libqt5gui5 && \
+apt-get update 
+apt-get -y upgrade 
+apt-get install -y --fix-missing software-properties-common libglib2.0 libqt5gui5 libgtk2.0-0 libglu1-mesa libgomp1 zlib1g 
+apt-get install -y  --fix-missing libxcb-image0 libqt5x11extras5 libqt5gui5 
 apt-get install -y --fix-missing language-pack-en \
   language-pack-en-base wget \
   vim nano lshw lsb-release bash-completion \
@@ -37,11 +35,11 @@ dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
 
 # Install Agisoft Photoscan Version 1.4.3 
 
-wget /usr/local/photoscan-pro_1_4_3_amd64.tar.gz http://download.agisoft.com/photoscan-pro_1_4_3_amd64.tar.gz && \
-tar zxvf /usr/local/photoscan-pro_1_4_3_amd64.tar.gz && \
-ln -s /usr/local/photoscan-pro/photoscan.sh && \
-rm -f /usr/local/photoscan-pro_1_4_3_amd64.tar.gz && \
-dpkg-reconfigure locales && \
-chmod 755 /usr/local/photoscan-pro/ && \
-chmod 755 /usr/local/photoscan-pro/* && \
+wget /usr/local/photoscan-pro_1_4_3_amd64.tar.gz http://download.agisoft.com/photoscan-pro_1_4_3_amd64.tar.gz 
+tar zxvf /usr/local/photoscan-pro_1_4_3_amd64.tar.gz 
+ln -s /usr/local/photoscan-pro/photoscan.sh 
+rm -f /usr/local/photoscan-pro_1_4_3_amd64.tar.gz
+dpkg-reconfigure locales
+chmod 755 /usr/local/photoscan-pro/ 
+chmod 755 /usr/local/photoscan-pro/* 
 chmod 755 /usr/local/photoscan-pro.sh
