@@ -1,5 +1,6 @@
-Bootstrap: docker
-From: ubuntu/xenial
+Bootstrap: debootstrap
+OSVersion: xenial
+MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %runscript
 exec echo "The runscript is the containers default runtime command!"
