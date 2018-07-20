@@ -6,12 +6,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 exec echo "The runscript is the containers default runtime command!"
 
 %setup
-    echo "Looking in directory '$SINGULARITY_ROOTFS' for /bin/sh"
-    if [ ! -x "$SINGULARITY_ROOTFS/bin/sh" ]; then
-        echo "Hrmm, this container does not have /bin/sh installed..."
-        exit 1
-    fi
-exit 0
 
 %environment
 
