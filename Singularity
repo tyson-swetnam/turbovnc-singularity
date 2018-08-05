@@ -1,39 +1,60 @@
-Bootstrap: debootstrap
-OSVersion: xenial
-MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+BootStrap: docker
+From: nvidia/opengl:1.0-glvnd-runtime
+
+%labels
+  Maintainer Tyson Lee Swetnam
+  TurboVNC-NVIDIA
+
+%apprun vncserver
+  exec vncserver "${@}"
+
+%apprun vncpasswd
+  exec vncpasswd "${@}"
+
+%apprun websockify
+  exec /opt/websockify/run "${@}"
 
 %runscript
-exec echo "The runscript is the containers default runtime command!"
-
-%setup
+  exec vncserver "${@}"
 
 %environment
+  export PATH=/opt/TurboVNC/bin:${PATH}
 
 %post
+  # Software versions
+  export TURBOVNC_VERSION=2.1.2
 
-apt-get update 
-apt-get -y upgrade 
-apt-get install -y --fix-missing software-properties-common libglib2.0 libqt5gui5 libgtk2.0-0 libglu1-mesa libgomp1 zlib1g 
-apt-get install -y  --fix-missing libxcb-image0 libqt5x11extras5 libqt5gui5 
-apt-get install -y --fix-missing language-pack-en \
-  language-pack-en-base wget \
-  vim nano lshw lsb-release bash-completion \
-  kmod iputils-ping net-tools \
-  wget curl
+  # Get dependencies
+  apt-get update
+  apt-get install -y --no-install-recommends \
+    locales \
+    wget \
+    ca-certificates \
+    xauth \
+    xfonts-base \
+    xkb-data \
+    x11-xkb-utils
 
-# Install Virtual GL
 
-wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
-apt-get -y install mesa-utils mesa-utils-extra x11-apps
-dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
+  # Configure default locale
+  echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+  locale-gen en_US.utf8
+  /usr/sbin/update-locale LANG=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
 
-# Install Agisoft Photoscan Version 1.4.3 
+  # Install TurboVNC
+  wget https://sourceforge.net/projects/turbovnc/files/${TURBOVNC_VERSION}/turbovnc_${TURBOVNC_VERSION}_amd64.deb -q
+  dpkg -i turbovnc_${TURBOVNC_VERSION}_amd64.deb
+  rm turbovnc_${TURBOVNC_VERSION}_amd64.deb
 
-wget /usr/local/photoscan-pro_1_4_3_amd64.tar.gz http://download.agisoft.com/photoscan-pro_1_4_3_amd64.tar.gz 
-tar zxvf /usr/local/photoscan-pro_1_4_3_amd64.tar.gz 
-ln -s /usr/local/photoscan-pro/photoscan.sh 
-rm -f /usr/local/photoscan-pro_1_4_3_amd64.tar.gz
-dpkg-reconfigure locales
-chmod 755 /usr/local/photoscan-pro/ 
-chmod 755 /usr/local/photoscan-pro/* 
-chmod 755 /usr/local/photoscan-pro.sh
+  # Install websockify
+  apt-get update
+  apt-get install -y --no-install-recommends \
+    python \
+    python-numpy
+  mkdir -p /opt/websockify
+  wget https://github.com/novnc/websockify/archive/master.tar.gz -q -O - | tar xzf - -C /opt/websockify --strip-components=1
+
+  # Clean up
+  rm -rf /var/lib/apt/lists/*
