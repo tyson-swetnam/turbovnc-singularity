@@ -111,7 +111,7 @@ From: nvidia/opengl:1.0-glvnd-runtime
   rm -rf /var/cache/oracle-jdk8-installer
 
   # NVIDIA Container Runtime
-  apt-get install -t --install-no-recommends nvidia-container-runtime
+  apt-get install -y --install-no-recommends nvidia-container-runtime
 
   # Clean up
   rm -rf /var/lib/apt/lists/*
