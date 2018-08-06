@@ -29,6 +29,15 @@ From: nvidia/opengl:1.0-glvnd-runtime
   # Get dependencies
   apt-get update
   apt-get install -y --no-install-recommends \
+    emacs \
+    vim \
+    nano \
+    lshw \
+    lsb-release \
+    bash-completion \
+    kmod \
+    iputils-ping \
+    net-tools \
     ca-certificates \
     locales \
     curl \
@@ -45,7 +54,8 @@ From: nvidia/opengl:1.0-glvnd-runtime
     libglu1:i386 \
     libsm6 \
     libxv1 \
-    libxv1:i386 \
+    libxv1:i386 
+    
 
   # XFCE4 Desktop
   apt-get install -y --no-install-recommends \
@@ -102,7 +112,6 @@ From: nvidia/opengl:1.0-glvnd-runtime
 
   # NVIDIA Container Runtime
   apt-get install -t --install-no-recommends nvidia-container-runtime
-
 
   # Clean up
   rm -rf /var/lib/apt/lists/*
