@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nvidia/opengl:1.0-glvnd-runtime
+From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04 
 
 %labels
   Maintainer Tyson Lee Swetnam
@@ -49,13 +49,12 @@ From: nvidia/opengl:1.0-glvnd-runtime
     xfonts-base \
     xkb-data \
     x11-xkb-utils \
+    xorg \
+    openbox \
     libc6-dev \
-    libglu1 \
-    libglu1:i386 \
-    libsm6 \
     libxv1 \
-    libxv1:i386 
-    
+    libxv1:i386 \
+    mesa-utils
 
   # XFCE4 Desktop
   apt-get install -y --no-install-recommends \
@@ -111,7 +110,14 @@ From: nvidia/opengl:1.0-glvnd-runtime
   rm -rf /var/cache/oracle-jdk8-installer
 
   # NVIDIA Container Runtime
-  apt-get install -y --install-no-recommends nvidia-container-runtime
+  curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
+    apt-key add -
+  distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+  curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
+    tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+  apt-get update
+  apt-get install nvidia-container-runtime
 
   # Clean up
   rm -rf /var/lib/apt/lists/*
+
