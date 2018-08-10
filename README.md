@@ -2,7 +2,7 @@
 
 ## Singularity
 
-Install [Singularity](https://www.sylabs.io/) on your server. 
+Install [Singularity](https://www.sylabs.io/) on your server. As of mid-August Singularity is v2.6.0
 
 **Option 1**: Pull this Github Repository and build the container on the server:
 
