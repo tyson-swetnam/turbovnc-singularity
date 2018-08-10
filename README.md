@@ -27,8 +27,20 @@ If you are having problems with starting the vncserver, [check your VirtualGL in
 
 # Running the container on a Server
 
-If running on HPC, remember to: `module load singularity`
+If running on UA HPC, remember to: 
+
+`module load singularity`
+`module load cuda80/gdk`
+
+Execute the container:
 
 ```
-singularity exec --nv turbovnc-ubuntu16.simg vncserver -xstartup ~/.vnc/xstartup -geometry 1920x1080 -dpi 128
+singularity exec --nv turbovnc-ubuntu16.simg vncserver -geometry 1920x1080 -dpi 128
 ```
+
+Shell into the container:
+
+```
+singularity shell --nv turbovnc-ubuntu16.simg
+```
+
