@@ -2,9 +2,9 @@
 
 ## Singularity
 
-Install [Singularity](https://www.sylabs.io/) on your server and your local system. 
+Install [Singularity](https://www.sylabs.io/) on your server. 
 
-**Option 1**: Pull this Github Repository and build the container locally:
+**Option 1**: Pull this Github Repository and build the container on the server:
 
 ```
 git clone https://github.com/tyson-swetnam/turbovnc-singularity
