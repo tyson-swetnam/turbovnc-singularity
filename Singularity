@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04 
+From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
 
 %labels
   Maintainer Tyson Lee Swetnam
@@ -54,7 +54,10 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
     libc6-dev \
     libxv1 \
     libxv1:i386 \
-    mesa-utils
+    mesa-utils \
+    dbus-x11 \
+    libglib2.0-tests \
+    apt-transport-https
 
   # XFCE4 Desktop
   apt-get install -y --no-install-recommends \
@@ -63,8 +66,9 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
     xfce4-notifyd \
     xfce4-taskmanager \
     xfce4-terminal \
-    libgtk-3-bin   
-    
+    libgtk-3-bin \  
+    gnome-icon-theme-full tango-icon-theme
+  
   # Configure default locale
   echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
   locale-gen en_US.utf8
@@ -94,30 +98,19 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
   mkdir -p /opt/websockify
   wget https://github.com/novnc/websockify/archive/master.tar.gz -q -O - | tar xzf - -C /opt/websockify --strip-components=1
 
-  # Install Java 8
-
-  apt-get update && apt-get install -y --no-install-recommends \
-    build-essential libgtk2.0-dev \
-    libgtk2.0-0:i386 libsm6:i386 \
-    software-properties-common python-software-properties \
-    default-jre default-jdk
-
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-  add-apt-repository -y ppa:webupd8team/java
-  apt-get update
-  apt-get install -y oracle-java8-installer
-  rm -rf /var/lib/apt/lists/*
-  rm -rf /var/cache/oracle-jdk8-installer
-
   # NVIDIA Container Runtime
+  apt-get install -y gnupg2
   curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
     apt-key add -
   distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
   curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
     tee /etc/apt/sources.list.d/nvidia-container-runtime.list
-  apt-get update
-  apt-get install nvidia-container-runtime
+  apt-get update  
+  apt-get install -y nvidia-container-runtime
+  ldconfig
+
+  # in-container bind points for shared filesystems
+  mkdir -p /extra /xdisk /uaopt /cm/shared
 
   # Clean up
   rm -rf /var/lib/apt/lists/*
-
