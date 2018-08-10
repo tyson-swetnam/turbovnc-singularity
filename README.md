@@ -15,7 +15,7 @@ sudo singularity build turbovnc-nvidia.simg Singularity
 **Option 2:**: Pull pre-built container from Singularity Hub:
 
 ```
-singularity pull shub://tyson-swetnam/turbovnc-singularity:latest
+singularity pull --name turbovnc-ubuntu16.simg shub://tyson-swetnam/turbovnc-ubuntu16:latest 
 ```
 
 
@@ -31,5 +31,5 @@ If you are having problems with starting the vncserver, [check your VirtualGL in
 If running on HPC, remember to: `module load singularity`
 
 ```
-singularity exec --nv turbovnc-nvidia.simg vncserver -geometry 1920x1080 -dpi 128
+singularity exec --nv turbovnc-ubuntu16.simg vncserver -xstartup ~/.vnc/xstartup -geometry 1920x1080 -dpi 128
 ```
