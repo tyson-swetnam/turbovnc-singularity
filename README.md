@@ -32,6 +32,12 @@ If running on UA HPC, remember to:
 `module load singularity`
 `module load cuda80/gdk`
 
+Run the container (default entrypoint):
+
+```
+singularity run --nv turbovnc-ubuntu16.simg
+```
+
 Execute the container:
 
 ```
