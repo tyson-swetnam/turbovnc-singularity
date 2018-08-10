@@ -9,7 +9,7 @@ Install [Singularity](https://www.sylabs.io/) on your server and your local syst
 ```
 git clone https://github.com/tyson-swetnam/turbovnc-singularity
 cd turbovnc-singularity
-sudo singularity build turbovnc-nvidia.simg Singularity
+sudo singularity build turbovnc-ubuntu16.simg Singularity
 ```
 
 **Option 2:**: Pull pre-built container from Singularity Hub:
@@ -17,7 +17,6 @@ sudo singularity build turbovnc-nvidia.simg Singularity
 ```
 singularity pull --name turbovnc-ubuntu16.simg shub://tyson-swetnam/turbovnc-ubuntu16:latest 
 ```
-
 
 ## Configure `xstartup`
 
