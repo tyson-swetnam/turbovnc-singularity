@@ -15,7 +15,7 @@ sudo singularity build turbovnc-ubuntu16.simg Singularity
 **Option 2:**: Pull pre-built container from Singularity Hub:
 
 ```
-singularity pull --name turbovnc-ubuntu16.simg shub://tyson-swetnam/turbovnc-ubuntu16:latest 
+singularity pull --name turbovnc-ubuntu16.simg shub://tyson-swetnam/turbovnc-singularity
 ```
 
 ## Configure `xstartup`
