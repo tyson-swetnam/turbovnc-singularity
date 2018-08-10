@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
+From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
 
 %labels
   Maintainer Tyson Lee Swetnam
@@ -61,14 +61,22 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04
 
   # XFCE4 Desktop
   apt-get install -y --no-install-recommends \
+    build-essential \
+    software-properties-common \
+    glib-2.0-dev \
+    libgtk2.0-dev \
+    libxfce4ui-1-dev \
     xfce4 \
     gtk3-engines-xfce \
     xfce4-notifyd \
     xfce4-taskmanager \
     xfce4-terminal \
-    libgtk-3-bin \  
-    gnome-icon-theme-full tango-icon-theme
+    libgtk-3-bin
+  add-apt-repository ppa:rebuntu16/other-stuff 
+  apt-get update
+  apt-get install -y xfce-theme-manager
   
+
   # Configure default locale
   echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
   locale-gen en_US.utf8
