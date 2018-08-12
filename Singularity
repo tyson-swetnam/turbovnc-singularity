@@ -116,9 +116,14 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   apt-get update  
   apt-get install -y nvidia-container-runtime
   ldconfig
+  
+  # NVIDIA Drivers test
+  add-apt-repository ppa:graphics-drivers/ppa
+  apt update
+  apt install -y nvidia-modprobe
 
   # in-container bind points for shared filesystems
-  mkdir -p /extra /xdisk /uaopt /cm/shared
+  mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
 
   # Clean up
   rm -rf /var/lib/apt/lists/*
