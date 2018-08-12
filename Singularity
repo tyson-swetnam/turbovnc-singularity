@@ -120,7 +120,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   # NVIDIA Drivers test
   add-apt-repository ppa:graphics-drivers/ppa
   apt update
-  apt install -y nvidia-driver-396 nvidia-modprobe
+  apt install -y nvidia-396 nvidia-modprobe
 
   # in-container bind points for shared filesystems
   mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
