@@ -101,7 +101,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   
   # Install noVNC
   cd /opt
-  https://github.com/novnc/noVNC
+  git clone https://github.com/novnc/noVNC/
 
   # Install websockify
   apt-get update
