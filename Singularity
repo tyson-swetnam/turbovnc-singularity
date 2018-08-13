@@ -58,6 +58,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
     dbus-x11 \
     libglib2.0-tests \
     git \
+    libxcb-keysyms1-dev \
     apt-transport-https
 
   # XFCE4 Desktop
