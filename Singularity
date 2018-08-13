@@ -57,6 +57,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
     mesa-utils \
     dbus-x11 \
     libglib2.0-tests \
+    git \
     apt-transport-https
 
   # XFCE4 Desktop
@@ -97,6 +98,10 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   dpkg -i virtualgl_${VIRTUALGL_VERSION}_amd64.deb
   dpkg -i virtualgl32_${VIRTUALGL_VERSION}_amd64.deb
   rm -f *.deb
+  
+  # Install noVNC
+  cd /opt
+  https://github.com/novnc/noVNC
 
   # Install websockify
   apt-get update
