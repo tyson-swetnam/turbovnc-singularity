@@ -55,6 +55,8 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
     libxv1 \
     libxv1:i386 \
     mesa-utils \
+    mesa-utils-extra \
+    x11-apps \
     dbus-x11 \
     libglib2.0-tests \
     git \
@@ -123,7 +125,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   apt-get install -y nvidia-container-runtime
   ldconfig
   
-  # NVIDIA Drivers test
+  # NVIDIA Drivers
   add-apt-repository ppa:graphics-drivers/ppa
   apt update
   apt install -y nvidia-396 nvidia-modprobe
