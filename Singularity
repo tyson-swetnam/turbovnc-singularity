@@ -129,6 +129,18 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   add-apt-repository ppa:graphics-drivers/ppa
   apt update
   apt install -y nvidia-396 nvidia-modprobe
+  
+# Install Java 8
+  apt-get update && apt-get install -y --no-install-recommends \
+    libgtk2.0-0:i386 libsm6:i386 \
+    python-software-properties \
+    default-jre default-jdk
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+  add-apt-repository -y ppa:webupd8team/java
+  apt-get update
+  apt-get install -y oracle-java8-installer
+  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/cache/oracle-jdk8-installer
 
   # in-container bind points for shared filesystems
   mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
