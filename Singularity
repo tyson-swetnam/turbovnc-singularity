@@ -141,7 +141,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   apt-get install -y oracle-java8-installer
   rm -rf /var/lib/apt/lists/*
   rm -rf /var/cache/oracle-jdk8-installer
-  apt-get install openjfx
+  apt-get install -y openjfx
   
   # in-container bind points for shared filesystems
   mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
