@@ -130,7 +130,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   apt update
   apt install -y nvidia-396 nvidia-modprobe
   
-# Install Java 8
+  # Install Java 8
   apt-get update && apt-get install -y --no-install-recommends \
     libgtk2.0-0:i386 libsm6:i386 \
     python-software-properties \
@@ -142,6 +142,9 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   rm -rf /var/lib/apt/lists/*
   rm -rf /var/cache/oracle-jdk8-installer
   apt-get install -y openjfx
+  
+  # Install a couple monitoring tools
+  apt-get install -y htop tmux
   
   # in-container bind points for shared filesystems
   mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
