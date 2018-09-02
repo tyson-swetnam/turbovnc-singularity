@@ -1,5 +1,5 @@
 BootStrap: docker
-From nvidia/opengl:9.2-devel-ubuntu16.04
+From: nvidia/opengl:9.2-devel-ubuntu16.04
 
 %labels
   Maintainer Tyson Lee Swetnam
