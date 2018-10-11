@@ -141,7 +141,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   apt-get install -y oracle-java8-installer
   rm -rf /var/lib/apt/lists/*
   rm -rf /var/cache/oracle-jdk8-installer
-  apt-get install -y openjfx
+  # apt-get install -y openjfx
   
   # Install a couple monitoring tools
   apt-get install -y htop tmux
