@@ -144,7 +144,7 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
   # apt-get install -y openjfx
   
   # Install a couple monitoring tools
-  apt-get install -y htop tmux
+  # apt-get install -y htop tmux
   
   # in-container bind points for shared filesystems
   mkdir -p /extra /xdisk /uaopt /cm/shared /rsgrps
