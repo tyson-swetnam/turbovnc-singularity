@@ -73,3 +73,8 @@ Shell into the container:
 singularity shell --nv turbovnc-ubuntu16.simg
 ```
 
+Start NoVNC and websockify
+
+```
+/opt/websockify/run --web /opt/noVNC/ 5902 <ip-of-machine>:5901
+```
