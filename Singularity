@@ -113,22 +113,6 @@ From: nvidia/opengl:1.0-glvnd-runtime-ubuntu16.04
     python-numpy
   mkdir -p /opt/websockify
   wget https://github.com/novnc/websockify/archive/master.tar.gz -q -O - | tar xzf - -C /opt/websockify --strip-components=1
-
-  # NVIDIA Container Runtime
-  apt-get install -y gnupg2
-  curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
-  apt-key add -
-  distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-  curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
-  tee /etc/apt/sources.list.d/nvidia-container-runtime.list
-  apt-get update  
-  apt-get install -y nvidia-container-runtime
-  ldconfig
-  
-  # NVIDIA Drivers
-  add-apt-repository ppa:graphics-drivers/ppa
-  apt update
-  apt install -y nvidia-396 nvidia-modprobe
   
 # Install Java 8
   apt-get update && apt-get install -y --no-install-recommends \
